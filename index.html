@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIRAVISION TRIVIA - Pregunta Activa y Ranking</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0c0c0c;
+            color: #f4f4f4;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1f1f1f;
+            padding: 10px 20px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            max-height: 160px;
+            height: auto;
+            width: auto;
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                max-height: 120px;
+            }
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+            transition: transform 0.2s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Estilos para los nuevos bloques --- */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los bloques se envuelvan en pantallas pequeñas */
+            justify-content: center;
+            gap: 20px; /* Espacio entre los bloques */
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .trivia-card, .ranking-card {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            color: #e0e0e0;
+            flex: 1; /* Permite que los bloques crezcan y se encojan */
+            min-width: 300px; /* Ancho mínimo para cada tarjeta */
+            max-width: 580px; /* Ancho máximo deseado */
+            box-sizing: border-box; /* Incluir padding y border en el ancho/alto */
+        }
+
+        .trivia-card h2, .ranking-card h2 {
+            color: #ff9900; /* Color naranja para títulos */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .trivia-content {
+            display: flex;
+            flex-direction: column; /* Apila los elementos de la trivia */
+            align-items: center;
+            text-align: center;
+        }
+
+        .trivia-content img.cover {
+            max-width: 180px; /* Tamaño de la carátula */
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .trivia-content .title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f0f0f0;
+        }
+
+        .trivia-content .question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #c0c0c0;
+        }
+
+        .trivia-options {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .trivia-options li {
+            background-color: #2a2a2a;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            border-left: 5px solid #ff9900; /* Barra de color en las opciones */
+        }
+
+        .join-chat {
+            background-color: #4CAF50; /* Color verde para el botón/enlace */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            display: inline-block; /* Para que el padding y margen funcionen bien */
+            margin-top: 15px;
+        }
+
+        .join-chat:hover {
+            background-color: #45a049;
+        }
+
+        /* --- Estilos para el Ranking --- */
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .ranking-table th, .ranking-table td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .ranking-table th {
+            background-color: #2a2a2a;
+            color: #ff9900;
+            font-size: 1.1em;
+        }
+
+        .ranking-table tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        .ranking-table tr:hover {
+            background-color: #333;
+        }
+
+        .ranking-table td.rank {
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        .ranking-table td.user {
+            color: #e0e0e0;
+        }
+
+        .ranking-table td.score {
+            font-weight: bold;
+            color: #ff9900;
+            text-align: right;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f1f1f;
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <a href="https://piravision.github.io/App/" target="_blank">
+				<img src="https://cdn.streamelements.com/uploads/fa3fe2b3-134b-4288-bfef-29948befc05f.png" alt="Logo" class="logo">
+            </a>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.twitch.tv/piravision" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/4e340b43-7b0e-4bad-81d4-197c233827c4.png" alt="Twitch">
+            </a>
+            <a href="https://kick.com/piravision" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/9e660f91-49cb-476f-b328-8a1e5d9706ae.png" alt="Kick">
+            </a>
+            <a href="https://discord.gg/7VEzeTy55R" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/e731c1a0-344f-432d-bbf8-0590844f7e25.png" alt="Discord">
+            </a>
+            <a href="https://x.com/PiraVision" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/aecdfafd-fb1e-41d7-91ff-cc7d5cb34a32.png" alt="X (Twitter)">
+            </a>
+            <a href="https://t.me/+UD7ZygM3MrlhNjg0" target="_blank">
+                <img src="https://cdn.streamelements.com/uploads/16594692-335f-470e-9beb-fd542023ec96.png" alt="Telegram">
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="trivia-card">
+            <h2>⏰PREGUNTA ACTIVA⏰</h2>
+            <div class="trivia-content">
+                <img src="https://via.placeholder.com/180x250?text=Caratula" alt="Carátula del Contenido" class="cover" id="current-cover">
+                <p class="title" id="current-title">Cargando Título...</p>
+                <p class="question" id="current-question">Cargando Pregunta...</p>
+                <ul class="trivia-options">
+                    <li id="option-a">A) Opción A</li>
+                    <li id="option-b">B) Opción B</li>
+                    <li id="option-c">C) Opción C</li>
+                </ul>
+                <a href="https://kick.com/piravision" target="_blank" class="join-chat">¡Participa en el Chat!</a>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #aaa;">Para responder, usa !a, !b, !c o !respuesta [tu texto] en el chat.</p>
+            </div>
+        </div>
+
+        <div class="ranking-card">
+            <h2>🏆 RANKING PIRAVIEWERS 🏆</h2>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Pos.</th>
+                        <th>Usuario</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="ranking-body">
+                    <tr><td colspan="3" style="text-align: center;">Cargando Ranking...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>PIRAVISION APP</p>
+    </div>
+
+    <script>
+        // Este script será sobrescrito por el bot de Python
+        // con los datos actuales de la trivia y el ranking.
+        // Por ahora, contiene solo los elementos estáticos.
+    </script>
+</body>
+</html>
