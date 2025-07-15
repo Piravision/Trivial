@@ -45,25 +45,25 @@
             gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-top: 10px;
         }
 
-        .social-icons img {
-            width: 35px;
-            height: 35px;
-            transition: transform 0.2s;
+        .social-icons a {
+            color: #f4f4f4;
+            text-decoration: none;
+            font-size: 2em;
+            transition: color 0.3s ease;
         }
 
-        .social-icons img:hover {
-            transform: scale(1.1);
+        .social-icons a:hover {
+            color: #007bff; /* Color de realce al pasar el ratón */
         }
 
-        /* --- Estilos para los nuevos bloques --- */
-        .main-content {
+        .container {
             display: flex;
-            flex-wrap: wrap; /* Permite que los bloques se envuelvan en pantallas pequeñas */
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 20px; /* Espacio entre los bloques */
+            gap: 20px;
             padding: 20px;
             max-width: 1200px;
             margin: 20px auto;
@@ -72,87 +72,73 @@
         .trivia-card, .ranking-card {
             background-color: #1f1f1f;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 25px;
-            color: #e0e0e0;
-            flex: 1; /* Permite que los bloques crezcan y se encojan */
-            min-width: 300px; /* Ancho mínimo para cada tarjeta */
-            max-width: 580px; /* Ancho máximo deseado */
-            box-sizing: border-box; /* Incluir padding y border en el ancho/alto */
-        }
-
-        .trivia-card h2, .ranking-card h2 {
-            color: #ff9900; /* Color naranja para títulos */
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-        }
-
-        .trivia-content {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            box-sizing: border-box;
             display: flex;
-            flex-direction: column; /* Apila los elementos de la trivia */
+            flex-direction: column;
             align-items: center;
             text-align: center;
         }
 
-        .trivia-content img.cover {
-            max-width: 180px; /* Tamaño de la carátula */
-            height: auto;
-            border-radius: 5px;
+        .trivia-card h2, .ranking-card h2 {
+            color: #007bff;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            font-size: 1.8em;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            width: 100%;
         }
 
-        .trivia-content .title {
+        .question-title {
             font-size: 1.4em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #f0f0f0;
+            margin-bottom: 15px;
+            color: #f4f4f4;
         }
 
-        .trivia-content .question {
+        .question {
             font-size: 1.2em;
-            margin-bottom: 15px;
-            color: #c0c0c0;
+            margin-bottom: 20px;
+            color: #ccc;
         }
 
         .trivia-options {
             list-style: none;
             padding: 0;
             width: 100%;
-            text-align: left;
-            margin-bottom: 20px;
         }
 
         .trivia-options li {
-            background-color: #2a2a2a;
+            background-color: #333;
             margin-bottom: 10px;
             padding: 12px 15px;
             border-radius: 5px;
+            cursor: default;
+            transition: background-color 0.2s ease;
+            text-align: left;
             font-size: 1.1em;
-            border-left: 5px solid #ff9900; /* Barra de color en las opciones */
+            color: #f4f4f4;
         }
 
         .join-chat {
-            background-color: #4CAF50; /* Color verde para el botón/enlace */
+            display: inline-block;
+            background-color: #007bff;
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
+            margin-top: 20px;
             font-weight: bold;
-            font-size: 1.1em;
             transition: background-color 0.3s ease;
-            display: inline-block; /* Para que el padding y margen funcionen bien */
-            margin-top: 15px;
         }
 
         .join-chat:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
 
-        /* --- Estilos para el Ranking --- */
         .ranking-table {
             width: 100%;
             border-collapse: collapse;
@@ -160,96 +146,90 @@
         }
 
         .ranking-table th, .ranking-table td {
-            text-align: left;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border-bottom: 1px solid #333;
+            text-align: left;
         }
 
         .ranking-table th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ranking-table tbody tr:nth-child(even) {
             background-color: #2a2a2a;
-            color: #ff9900;
-            font-size: 1.1em;
         }
 
-        .ranking-table tr:nth-child(even) {
-            background-color: #222;
+        .ranking-table tbody tr:hover {
+            background-color: #3a3a3a;
         }
 
-        .ranking-table tr:hover {
-            background-color: #333;
+        .ranking-table .rank {
+            width: 15%;
+            text-align: center;
         }
 
-        .ranking-table td.rank {
-            font-weight: bold;
-            color: #f0f0f0;
+        .ranking-table .user {
+            width: 50%;
         }
 
-        .ranking-table td.user {
-            color: #e0e0e0;
-        }
-
-        .ranking-table td.score {
-            font-weight: bold;
-            color: #ff9900;
+        .ranking-table .score {
+            width: 35%;
             text-align: right;
+            font-weight: bold;
+            color: #007bff;
         }
 
         .footer {
             text-align: center;
             padding: 20px;
             background: #1f1f1f;
-            color: #888;
+            color: #aaa;
             font-size: 0.9em;
-            margin-top: 30px;
+            margin-top: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .trivia-card, .ranking-card {
+                max-width: 90%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo-container">
-            <a href="https://piravision.github.io/App/" target="_blank">
-                <img src="https://cdn.streamelements.com/uploads/fa3fe2b3-134b-4288-bfef-29948befc05f.png" alt="Logo" class="logo">
-            </a>
+            
+                <img src="data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=" alt="PIRAVISION Logo" class="logo">
+            
         </div>
         <div class="social-icons">
-            <a href="https://www.twitch.tv/piravision" target="_blank">
-                <img src="https://cdn.streamelements.com/uploads/4e340b43-7b0e-4bad-81d4-197c233827c4.png" alt="Twitch">
-            </a>
-            <a href="https://kick.com/piravision" target="_blank">
-                <img src="https://cdn.streamelements.com/uploads/9e660f91-49cb-476f-b328-8a1e5d9706ae.png" alt="Kick">
-            </a>
-            <a href="https://discord.gg/7VEzeTy55R" target="_blank">
-                <img src="https://cdn.streamelements.com/uploads/e731c1a0-344f-432d-bbf8-0590844f7e25.png" alt="Discord">
-            </a>
-            <a href="https://x.com/PiraVision" target="_blank">
-                <img src="https://cdn.streamelements.com/uploads/aecdfafd-fb1e-41d7-91ff-cc7d5cb34a32.png" alt="X (Twitter)">
-            </a>
-            <a href="https://t.me/+UD7ZygM3MrlhNjg0" target="_blank">
-                <img src="https://cdn.streamelements.com/uploads/16594692-335f-470e-9beb-fd542023ec96.png" alt="Telegram">
-            </a>
+            <a href="https://twitter.com/piravision_app" target="_blank" aria-label="Twitter"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/ffffff/twitterx--v2.png" alt="twitterx--v2"/></a>
+            <a href="https://www.instagram.com/piravision.app/" target="_blank" aria-label="Instagram"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new--v1.png" alt="instagram-new--v1"/></a>
+            <a href="https://www.youtube.com/@PIRAVISION" target="_blank" aria-label="YouTube"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play--v1.png" alt="youtube-play--v1"/></a>
+            <a href="https://discord.gg/ejz8V3G5" target="_blank" aria-label="Discord"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/ffffff/discord--v1.png" alt="discord--v1"/></a>
+            <a href="https://kick.com/piravision" target="_blank" aria-label="Kick"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/ffffff/kick.png" alt="kick"/></a>
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="container">
         <div class="trivia-card">
-            <h2>⏰PREGUNTA ACTIVA⏰</h2>
-            <div class="trivia-content">
-                
-                <img src="https://via.placeholder.com/180x250?text=Caratula" alt="Carátula del Contenido" class="cover" id="current-cover">
-                
-
-                <p class="title" id="current-title">Cargando Título...</p>
-                <p class="question" id="current-question">Cargando Pregunta...</p>
-                <ul class="trivia-options">
-                    
-                        <li id="option-a">A) Opción A</li>
-                        <li id="option-b">B) Opción B</li>
-                        <li id="option-c">C) Opción C</li>
-                    
-                </ul>
-                <a href="https://kick.com/piravision" target="_blank" class="join-chat">¡Participa en el Chat!</a>
-                <p style="margin-top: 10px; font-size: 0.9em; color: #aaa;">Para responder, usa !a, !b, !c o !respuesta [tu texto] en el chat.</p>
-            </div>
+            <h2>❓ Pregunta Actual ❓</h2>
+            <h2 class="question-title" id="current-title">Sin Contenido</h2>
+            <p class="question" id="current-question">Actualmente no hay ninguna pregunta activa. ¡Mantente atento!</p>
+            <ul class="trivia-options">
+                <li>A) N/A</li>
+                <li>B) N/A</li>
+                <li>C) N/A</li>
+            </ul>
+            <a href="https://kick.com/piravision" target="_blank" class="join-chat">¡Participa en el Chat!</a>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #aaa;">Para responder, usa !a, !b, !c o !respuesta [tu texto] en el chat.</p>
         </div>
 
         <div class="ranking-card">
@@ -264,8 +244,97 @@
                 </thead>
                 <tbody id="ranking-body">
                     
-                    
-                    <tr><td colspan="3" style="text-align: center;">Cargando Ranking...</td></tr>
+                        
+                        <tr>
+                            <td class="rank">1</td>
+                            <td class="user">Alvaropt11</td>
+                            <td class="score">75</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">2</td>
+                            <td class="user">Huete86</td>
+                            <td class="score">68</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">3</td>
+                            <td class="user">srsuricat0</td>
+                            <td class="score">30</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">4</td>
+                            <td class="user">Rosahm1</td>
+                            <td class="score">24</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">5</td>
+                            <td class="user">Miguel_Torrezno</td>
+                            <td class="score">15</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">6</td>
+                            <td class="user">Piranya69</td>
+                            <td class="score">12</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">7</td>
+                            <td class="user">Devilbloody</td>
+                            <td class="score">6</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">8</td>
+                            <td class="user">Afr0samuray</td>
+                            <td class="score">5</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">9</td>
+                            <td class="user">Weapons89</td>
+                            <td class="score">3</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">10</td>
+                            <td class="user">rafael_antunez</td>
+                            <td class="score">3</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">11</td>
+                            <td class="user">TheRost</td>
+                            <td class="score">2</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">12</td>
+                            <td class="user">Criug</td>
+                            <td class="score">2</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">13</td>
+                            <td class="user">Piravision</td>
+                            <td class="score">1</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">14</td>
+                            <td class="user">sisote</td>
+                            <td class="score">1</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank">15</td>
+                            <td class="user">mapachito91</td>
+                            <td class="score">1</td>
+                        </tr>
+                        
                     
                 </tbody>
             </table>
@@ -275,9 +344,5 @@
     <div class="footer">
         <p>PIRAVISION APP</p>
     </div>
-
-    <script>
-        // Este script ahora solo es un marcador, los datos se inyectan desde Python.
-    </script>
 </body>
 </html>
