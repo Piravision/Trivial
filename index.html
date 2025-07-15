@@ -208,7 +208,7 @@
     <div class="header">
         <div class="logo-container">
             <a href="https://piravision.github.io/App/" target="_blank">
-				<img src="https://cdn.streamelements.com/uploads/fa3fe2b3-134b-4288-bfef-29948befc05f.png" alt="Logo" class="logo">
+                <img src="https://cdn.streamelements.com/uploads/fa3fe2b3-134b-4288-bfef-29948befc05f.png" alt="Logo" class="logo">
             </a>
         </div>
         <div class="social-icons">
@@ -234,13 +234,18 @@
         <div class="trivia-card">
             <h2>⏰PREGUNTA ACTIVA⏰</h2>
             <div class="trivia-content">
+                
                 <img src="https://via.placeholder.com/180x250?text=Caratula" alt="Carátula del Contenido" class="cover" id="current-cover">
+                
+
                 <p class="title" id="current-title">Cargando Título...</p>
                 <p class="question" id="current-question">Cargando Pregunta...</p>
                 <ul class="trivia-options">
-                    <li id="option-a">A) Opción A</li>
-                    <li id="option-b">B) Opción B</li>
-                    <li id="option-c">C) Opción C</li>
+                    
+                        <li id="option-a">A) Opción A</li>
+                        <li id="option-b">B) Opción B</li>
+                        <li id="option-c">C) Opción C</li>
+                    
                 </ul>
                 <a href="https://kick.com/piravision" target="_blank" class="join-chat">¡Participa en el Chat!</a>
                 <p style="margin-top: 10px; font-size: 0.9em; color: #aaa;">Para responder, usa !a, !b, !c o !respuesta [tu texto] en el chat.</p>
@@ -258,7 +263,10 @@
                     </tr>
                 </thead>
                 <tbody id="ranking-body">
+                    
+                    
                     <tr><td colspan="3" style="text-align: center;">Cargando Ranking...</td></tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -269,9 +277,7 @@
     </div>
 
     <script>
-        // Este script será sobrescrito por el bot de Python
-        // con los datos actuales de la trivia y el ranking.
-        // Por ahora, contiene solo los elementos estáticos.
+        // Este script ahora solo es un marcador, los datos se inyectan desde Python.
     </script>
 </body>
 </html>
